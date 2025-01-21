@@ -17,7 +17,6 @@ const Books = () => {
           <Book key={book.bookId} book={book}></Book>
         ))}
       </div>
-      <p>{books.length}</p>
     </div>
   );
 };
