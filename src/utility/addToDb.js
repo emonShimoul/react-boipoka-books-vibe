@@ -22,4 +22,27 @@ const addToStoredList = (id) => {
   }
 };
 
-export { addToStoredList };
+const getStoredWishList = () => {
+  // wishlist
+  const storedWishListStr = localStorage.getItem("wish-list");
+  if (storedWishListStr) {
+    const storedWishList = JSON.parse(storedWishListStr);
+    return storedWishList;
+  } else {
+    return [];
+  }
+};
+
+const addToStoredWishList = (id) => {
+  const storedWishList = getStoredWishList();
+
+  if (storedWishList.includes(id)) {
+    console.log(id, "Already exist in the wish list");
+  } else {
+    storedWishList.push(id);
+    const storedWishListStr = JSON.stringify(storedWishList);
+    localStorage.setItem("wish-list", storedWishListStr);
+  }
+};
+
+export { addToStoredList, addToStoredWishList, getStoredReadList };
