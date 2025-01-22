@@ -7,7 +7,6 @@ const BookDetail = () => {
   const id = parseInt(bookId);
   const data = useLoaderData();
   const book = data.find((book) => book.bookId === id);
-  //   console.log(data, book);
 
   const { bookId: currentBookId, bookName, image } = book;
 
@@ -16,7 +15,7 @@ const BookDetail = () => {
   };
 
   const handleWishlist = (id) => {
-    console.log(id);
+    // console.log(id);
     addToStoredWishList(id);
   };
 

@@ -11,7 +11,6 @@ const ListedBooks = () => {
   const [sort, setSort] = useState("");
   const allBooks = useLoaderData();
   //   ideally we will directly get the read book list from the database.
-  console.log(wishList);
 
   useEffect(() => {
     const storedReadList = getStoredReadList();
