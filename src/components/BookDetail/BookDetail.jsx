@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-import { addToStoredList } from "../../utility/addToDb";
+import { addToStoredList, addToStoredWishList } from "../../utility/addToDb";
 
 const BookDetail = () => {
   const { bookId } = useParams();
@@ -15,6 +15,11 @@ const BookDetail = () => {
     addToStoredList(id);
   };
 
+  const handleWishlist = (id) => {
+    console.log(id);
+    addToStoredWishList(id);
+  };
+
   return (
     <div className="my-12 flex flex-col justify-center items-center gap-4">
       <h2 className="text-2xl">Book Name: {bookName}</h2>
@@ -26,7 +31,12 @@ const BookDetail = () => {
         >
           Mark as Read
         </button>
-        <button className="btn btn-accent">Add to WishList</button>
+        <button
+          onClick={() => handleWishlist(bookId)}
+          className="btn btn-accent"
+        >
+          Add to WishList
+        </button>
       </div>
     </div>
   );
