@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { getStoredReadList } from "../../utility/addToDb";
+import { getStoredReadList, getStoredWishList } from "../../utility/addToDb";
 import Book from "../Book/Book";
 
 const ListedBooks = () => {
   const [readList, setReadList] = useState([]);
+  const [wishList, setWishList] = useState([]);
   const [sort, setSort] = useState("");
   const allBooks = useLoaderData();
   //   ideally we will directly get the read book list from the database.
+  console.log(wishList);
 
   useEffect(() => {
     const storedReadList = getStoredReadList();
@@ -19,6 +21,16 @@ const ListedBooks = () => {
       storedReadListInt.includes(book.bookId)
     );
     setReadList(readBookList);
+  }, []);
+
+  useEffect(() => {
+    const storedWishList = getStoredWishList();
+    const storedWishListInt = storedWishList.map((id) => parseInt(id));
+
+    const wishListBook = allBooks.filter((book) =>
+      storedWishListInt.includes(book.bookId)
+    );
+    setWishList(wishListBook);
   }, []);
 
   const handleSort = (sortType) => {
@@ -75,7 +87,7 @@ const ListedBooks = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <h2 className="text-2xl">My WishList</h2>
+          <h2 className="text-2xl">My WishList: {}</h2>
         </TabPanel>
       </Tabs>
     </div>
