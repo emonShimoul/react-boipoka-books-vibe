@@ -11,6 +11,7 @@ import BookDetail from "./components/BookDetail/BookDetail";
 import ListedBooks from "./components/ListedBooks/ListedBooks";
 import { ToastContainer } from "react-toastify";
 import { HelmetProvider } from "react-helmet-async";
+import { APIProvider } from "@vis.gl/react-google-maps";
 
 const router = createBrowserRouter([
   {
@@ -44,8 +45,10 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HelmetProvider>
-      <RouterProvider router={router} />
-      <ToastContainer />
+      <APIProvider apiKey="">
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </APIProvider>
     </HelmetProvider>
   </StrictMode>
 );
